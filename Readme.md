@@ -1,46 +1,35 @@
-# Diabetes and Parkinson's Disease Prediction System
+# To made an predictions using Random Forest Algorithm
 
-Role: Developer || Researcher
-
-# Stages to Develop the System
-    Phase-1 : To learn the requirement of build the project.
-    Phase-2 : To develop an Model trained with dataset.
-    Phase-3 : Integrated with Web Application.
-    Pahse-4 : To Deploy the model as a result
-
-# Requirements attach with a file 
-    cmd: pip install -r requirements.txt
-    
-# Steps Implemented to train the model
-    1. Make an x and y label to classify the data for prediction.
-    2. Using classifier objects to enhance the service of Gradient Boosting, which provides
-    a prediction for the model.
-    3. Before classifiers, the labels need to be standardized, which makes
-    mode to be trained with a scalar object.
-
-# To find the accuracy of the given data
-    # Execute to find the accuracy of model
-    X_train_prediction = classifier.predict(X_train)
-    training_data_accuracy = accuracy_score(X_train_prediction, Y_train)
-
-# Following package need to be access
-    import numpy as np
+  # Import Requried Package as Object
     import pandas as pd
     from sklearn.model_selection import train_test_split
-    from sklearn.preprocessing import StandardScaler
+    from sklearn.ensemble import RandomForestClassifier
     from sklearn.metrics import accuracy_score
-    import matplotlib.pyplot as plt
-    from sklearn.ensemble import GradientBoostingClassifier
-    import warnings
 
-# Binary Formating of Model
-![GradientBoosting](https://github.com/NithinU2802/Diabetes_parkinson-Disease-Prediction/assets/106614289/7b4f5eac-ffef-465b-a82c-bd985f187f93)
+# Load diabetes dataset (replace with your dataset)
+    data = pd.read_csv('diabetes_dataset.csv')
 
+# Split data into features (X) and target (y)
+    X = data.drop('label_column', axis=1)
+    y = data['label_column']
 
-# Architecture of the Project
-     1. The model has been trained with the required algorithm and standardized.
-    make an analysis with label values.
-    2. Deploy the project using streamlet and spider web applications to 
-    enhance the dataset with easy access to output.
+# Split data into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-![Architecture](https://github.com/NithinU2802/Diabetes_parkinson-Disease-Prediction/assets/106614289/baf5c046-edd3-4fa0-8251-4752ce17a478)
+# Train Random Forest Classifier
+    model = RandomForestClassifier()
+    model.fit(X_train, y_train)
+
+# Make predictions on the test set
+    y_pred = model.predict(X_test)
+
+# Calculate accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f'Model Accuracy: {accuracy}')
+
+# In First face of the project SVM has been Implemented for the project
+    
+    SVM: SVM is a supervised learning algorithm used for classification and regression tasks. It
+    aims to find a hyperplane that best separates different classes in the feature space.
+    Random Forests: Random Forests is an ensemble learning method that builds a multitude of decision
+    trees during training and merges them together to get a more accurate and stable prediction.
